@@ -13,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <TextView
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/login_intro" />
@@ -28,6 +30,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/loginInputPassword" />
     <Button
+        android:id="@+id/loginBtn"
         android:text="@string/login_btn"
         android:layout_height="wrap_content"
         android:layout_width="match_parent" />
