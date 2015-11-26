@@ -53,6 +53,9 @@ namespace Products
 			// aapt resource value: 0x7f050000
 			public const int loginInputUsername = 2131034112;
 			
+			// aapt resource value: 0x7f050003
+			public const int productsList = 2131034115;
+			
 			static Id()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -68,6 +71,9 @@ namespace Products
 			
 			// aapt resource value: 0x7f030000
 			public const int Login = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int Products = 2130903041;
 			
 			static Layout()
 			{
