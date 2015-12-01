@@ -52,6 +52,7 @@
     <Compile Include="Model\ProductsModel.cs" />
     <Compile Include="Model\Products\ProductEntity.cs" />
     <Compile Include="ProductsFragment.cs" />
+    <Compile Include="Model\ProductsListAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -69,6 +70,7 @@
     <AndroidResource Include="Resources\layout\Products.axml" />
     <AndroidResource Include="Resources\layout\ProductsListCell.axml" />
     <AndroidResource Include="Resources\layout\ProductsListFragment.axml" />
+    <AndroidResource Include="Resources\drawable\box_trot.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

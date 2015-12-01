@@ -25,7 +25,10 @@ namespace Products.Model
 		{
 			for (int i = 0; i < 20; i++)
 			{
-				ProductEntity product = new ProductEntity { Name = $"Product #{i}" };
+				ProductEntity product = new ProductEntity { 
+					Name = $"Product #{i}",
+					Price = (i + 1) * 25
+				};
 
 				ProductsList.Add (product);
 			}

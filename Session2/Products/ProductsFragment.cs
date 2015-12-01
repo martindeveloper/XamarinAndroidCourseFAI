@@ -19,6 +19,7 @@ namespace Products
 	{
 		private Model.ProductsModel Model;
 		private ListView ProductsList;
+		private Products.Model.ProductsListAdapter Adapter;
 
 		public override void OnCreate (Bundle savedInstanceState)
 		{
@@ -41,8 +42,26 @@ namespace Products
 		{
 			base.OnStart ();
 
-			ArrayAdapter<ProductEntity> adapter = new ArrayAdapter<ProductEntity>(Activity, Android.Resource.Layout.SimpleListItem1, Model.GetProducts());
-			ProductsList.Adapter = adapter;
+			LayoutInflater inflater = Activity.GetSystemService (Context.LayoutInflaterService) as LayoutInflater;
+
+			if (inflater != null) {
+				Adapter = new Products.Model.ProductsListAdapter (Model.GetProducts (), inflater);
+				ProductsList.Adapter = Adapter;
+
+				ProductsList.ItemClick += OnProductClick;
+			}
+		}
+
+		private void OnProductClick (object sender, AdapterView.ItemClickEventArgs e)
+		{
+			ProductEntity product = Adapter [e.Position];
+
+			AlertDialog.Builder alertBuilder = new AlertDialog.Builder (Activity);
+
+			alertBuilder.SetTitle (product.Name)
+						.SetMessage ($"Price {product.Price} Kč");
+
+			alertBuilder.Show ();
 		}
 	}
 }
