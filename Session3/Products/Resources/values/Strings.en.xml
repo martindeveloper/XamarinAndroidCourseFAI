@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Products</string>
+	<string name="login_title">Login into application</string>
+	<string name="login_intro">This is my new cool application for products listing!</string>
+	<string name="login_username">Username</string>
+	<string name="login_password">Password</string>
+	<string name="login_btn">Login!</string>
+	<string name="login_message_success">Welcome!</string>
+	<string name="login_message_denied">Sorry, try again.</string>
+
+	<string name="product_detail_not_selected">No product is selected!</string>
+</resources>
