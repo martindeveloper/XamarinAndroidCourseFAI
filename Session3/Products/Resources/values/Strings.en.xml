@@ -10,4 +10,5 @@
 	<string name="login_message_denied">Sorry, try again.</string>
 
 	<string name="product_detail_not_selected">No product is selected!</string>
+	<string name="price">Price</string>
 </resources>

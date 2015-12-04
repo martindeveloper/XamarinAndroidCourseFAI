@@ -17,6 +17,9 @@ namespace Products
 	public class ProductsDetailFragment : Fragment
 	{
 		private TextView ProductTitle;
+		private TextView ProductPrice;
+		private TextView ProductDescription;
+		private TextView ProductLink;
 
 		public override void OnCreate (Bundle savedInstanceState)
 		{
@@ -30,13 +33,28 @@ namespace Products
 			View fragmentView = inflater.Inflate (Resource.Layout.ProductsDetailFragment, container, false);
 
 			ProductTitle = fragmentView.FindViewById<TextView> (Resource.Id.productDetailTitle);
+			ProductPrice = fragmentView.FindViewById<TextView> (Resource.Id.productDetailPrice);
+			ProductDescription = fragmentView.FindViewById<TextView> (Resource.Id.productDetailDescription);
+
+			ProductLink = fragmentView.FindViewById<TextView> (Resource.Id.productDetailLink);
+			ProductLink.LinksClickable = true;
 
 			return fragmentView;
 		}
 
+		public void ShowProduct(Products.Model.Products.ProductEntity product)
+		{
+			string price = Activity.Resources.GetString (Resource.String.price);
+
+			ProductTitle.Text = product.Name;
+			ProductPrice.Text = $"{price}: {product.Price} Kč";
+			ProductDescription.Text = product.Description;
+			ProductLink.Text = product.Link?.ToString ();
+		}
+
 		public void OnProductClickHandler(Products.Model.Products.ProductEntity product)
 		{
-			
+			ShowProduct (product);
 		}
 	}
 }

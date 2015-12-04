@@ -27,7 +27,9 @@ namespace Products.Model
 			{
 				ProductEntity product = new ProductEntity { 
 					Name = $"Product #{i}",
-					Price = (i + 1) * 25
+					Price = (i + 1) * 25,
+					Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit.",
+					Link = new Uri("http://www.google.com")
 				};
 
 				ProductsList.Add (product);

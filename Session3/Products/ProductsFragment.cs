@@ -18,7 +18,7 @@ namespace Products
 	public class ProductsFragment : Fragment
 	{
 		public event OnProductClickHandler OnProductClickEvent;
-		public delegate void OnProductClickHandler(Products.Model.Products.ProductEntity products);
+		public delegate void OnProductClickHandler(Products.Model.Products.ProductEntity product);
 
 		private Model.ProductsModel Model;
 		private ListView ProductsList;
@@ -59,12 +59,7 @@ namespace Products
 		{
 			ProductEntity product = Adapter [e.Position];
 
-			AlertDialog.Builder alertBuilder = new AlertDialog.Builder (Activity);
-
-			alertBuilder.SetTitle (product.Name)
-						.SetMessage ($"Price {product.Price} Kč");
-
-			alertBuilder.Show ();
+			OnProductClickEvent?.Invoke (product);
 		}
 	}
 }
