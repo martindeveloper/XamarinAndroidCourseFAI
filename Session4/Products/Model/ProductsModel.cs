@@ -36,6 +36,11 @@ namespace Products.Model
 		{
 			return ProductsList.Select (product => product).ToList ();
 		}
+
+		public ProductEntity FindProductByEAN(uint ean)
+		{
+			return ProductsList.Single (product => product.EAN == ean);
+		}
 	}
 }
 

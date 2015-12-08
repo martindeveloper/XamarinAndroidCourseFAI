@@ -25,6 +25,7 @@ namespace Products
 
 		private ListView ProductsList;
 		private TextView RefreshTimestamp;
+		private Button ScanButton;
 
 		public override void OnCreate (Bundle savedInstanceState)
 		{
@@ -43,8 +44,31 @@ namespace Products
 
 			ProductsList = fragmentView.FindViewById<ListView> (Resource.Id.productsList);
 			RefreshTimestamp = fragmentView.FindViewById<TextView> (Resource.Id.productsListTimestamp);
+			ScanButton = fragmentView.FindViewById<Button> (Resource.Id.productsListScanBtn);
+
+			ScanButton.Click += OnScanButtonClick;
 
 			return fragmentView;
+		}
+
+		private async void OnScanButtonClick (object sender, EventArgs e)
+		{
+			ZXing.Mobile.MobileBarcodeScanner scanner = new ZXing.Mobile.MobileBarcodeScanner();
+			ZXing.Result result = await scanner.Scan();
+
+			ProductEntity product = Model.FindProductByEAN (uint.Parse(result.Text));
+
+			AlertDialog.Builder alertBuilder = new AlertDialog.Builder (Activity);
+
+			if (product != null) {
+				alertBuilder.SetTitle ($"Product - {product.Name}");
+				alertBuilder.SetMessage (product.Description);
+			} else {
+				alertBuilder.SetTitle ("Error");
+				alertBuilder.SetMessage ($"Product with EAN {result.Text} couldnt be found!");
+			}
+
+			alertBuilder.Show ();
 		}
 
 		public async override void OnStart ()

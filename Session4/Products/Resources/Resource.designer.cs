@@ -26,6 +26,9 @@ namespace Products
 		
 		public static void UpdateIdValues()
 		{
+			global::ZXing.Mobile.Resource.Id.contentFrame = global::Products.Resource.Id.contentFrame;
+			global::ZXing.Mobile.Resource.Layout.zxingscanneractivitylayout = global::Products.Resource.Layout.zxingscanneractivitylayout;
+			global::ZXing.Mobile.Resource.Layout.zxingscannerfragmentlayout = global::Products.Resource.Layout.zxingscannerfragmentlayout;
 		}
 		
 		public partial class Animation
@@ -82,6 +85,9 @@ namespace Products
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f08000f
+			public const int contentFrame = 2131230735;
+			
 			// aapt resource value: 0x7f080002
 			public const int loginBtn = 2131230722;
 			
@@ -112,14 +118,17 @@ namespace Products
 			// aapt resource value: 0x7f080003
 			public const int productsFragmentContainer = 2131230723;
 			
-			// aapt resource value: 0x7f08000d
-			public const int productsList = 2131230733;
+			// aapt resource value: 0x7f08000e
+			public const int productsList = 2131230734;
 			
 			// aapt resource value: 0x7f08000b
 			public const int productsListCellPrice = 2131230731;
 			
 			// aapt resource value: 0x7f08000a
 			public const int productsListCellTitle = 2131230730;
+			
+			// aapt resource value: 0x7f08000d
+			public const int productsListScanBtn = 2131230733;
 			
 			// aapt resource value: 0x7f08000c
 			public const int productsListTimestamp = 2131230732;
@@ -151,6 +160,12 @@ namespace Products
 			
 			// aapt resource value: 0x7f040004
 			public const int ProductsListFragment = 2130968580;
+			
+			// aapt resource value: 0x7f040005
+			public const int zxingscanneractivitylayout = 2130968581;
+			
+			// aapt resource value: 0x7f040006
+			public const int zxingscannerfragmentlayout = 2130968582;
 			
 			static Layout()
 			{

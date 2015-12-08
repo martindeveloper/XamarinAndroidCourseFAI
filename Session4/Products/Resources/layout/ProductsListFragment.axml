@@ -11,6 +11,12 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/productsListScanBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dip"
+        android:text="Scan code" />
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"
