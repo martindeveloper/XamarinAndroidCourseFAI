@@ -2,6 +2,8 @@
 using Android.Widget;
 using Android.OS;
 using Android.Content;
+using System.Timers;
+using Android.Locations;
 
 namespace Products
 {
@@ -29,6 +31,22 @@ namespace Products
 
 			// Login button click event
 			LoginButton.Click += OnLoginButtonClick;
+
+			// GPS Button test
+			Button gpsButton = FindViewById<Button> (Resource.Id.gpsBtn);
+			gpsButton.Click += (object sender, System.EventArgs e) => {
+				LocationManager location = GetSystemService(LocationService) as LocationManager;
+				Criteria gpsCriteria = new Criteria() {
+					Accuracy = Accuracy.Coarse,
+					AltitudeRequired = false,
+					BearingRequired = false,
+					CostAllowed = true,
+					PowerRequirement = Power.NoRequirement,
+					SpeedRequired = false,
+				};
+
+				Location currentLocation = location.GetLastKnownLocation(location.GetBestProvider(gpsCriteria, false));
+			};
 		}
 
 		private void OnLoginButtonClick (object sender, System.EventArgs e)

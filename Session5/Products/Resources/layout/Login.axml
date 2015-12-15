@@ -34,4 +34,9 @@
         android:text="@string/login_btn"
         android:layout_height="wrap_content"
         android:layout_width="match_parent" />
+    <Button
+        android:id="@+id/gpsBtn"
+        android:text="Get GPS location"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
 </LinearLayout>

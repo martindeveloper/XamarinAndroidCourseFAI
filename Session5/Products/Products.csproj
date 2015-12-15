@@ -67,6 +67,7 @@
     <Compile Include="Model\ProductsListAdapter.cs" />
     <Compile Include="ProductsDetailFragment.cs" />
     <Compile Include="Model\Api.cs" />
+    <Compile Include="Model\SocketModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
