@@ -1,27 +1,26 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Collections.ObjectModel;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Products.Model.Products;
+using System.Timers;
+
 
 namespace Products
 {
 	public class ProductsFragment : Fragment
 	{
 		public event OnProductClickHandler OnProductClickEvent;
-		public delegate void OnProductClickHandler(Products.Model.Products.ProductEntity product);
+		public delegate void OnProductClickHandler(ProductEntity product);
 
 		private Model.ProductsModel Model;
 		private Products.Model.ProductsListAdapter Adapter;
+		private ObservableCollection<ProductEntity> ProductsCollection;
 
 		private ListView ProductsList;
 		private TextView RefreshTimestamp;
@@ -82,11 +81,42 @@ namespace Products
 
 				RefreshTimestamp.Text = lastDataRefresh.ToLongTimeString ();
 
-				Adapter = new Products.Model.ProductsListAdapter (Activity, Model.GetProducts (), inflater);
+				ProductsCollection = Model.GetProducts ();
+
+				Adapter = new Products.Model.ProductsListAdapter (ProductsCollection, inflater);
 				ProductsList.Adapter = Adapter;
 
 				ProductsList.ItemClick += OnProductClick;
 			}
+
+			// Timer for adding new dummy product
+			// Just for testing purpose
+			Timer timer = new Timer (1 * 1000);
+			timer.Elapsed += (object sender, ElapsedEventArgs e) => {
+				Activity.RunOnUiThread(() => {
+					ProductsCollection.Add(new ProductEntity {
+						Name = $"Product Timer {e.SignalTime}",
+						Price = 100
+					});
+				});
+			};
+
+			timer.AutoReset = true;
+			timer.Start ();
+
+			Timer timer2 = new Timer (5 * 1000);
+			timer2.Elapsed += (object sender, ElapsedEventArgs e) => {
+				Activity.RunOnUiThread(() => {
+					int i = 0;
+
+					foreach(ProductEntity product in ProductsCollection) {
+						product.Name = $"Test {i + 1}";
+						i++;
+					}
+				});
+			};
+
+			timer2.Start ();
 		}
 
 		private void OnProductClick (object sender, AdapterView.ItemClickEventArgs e)

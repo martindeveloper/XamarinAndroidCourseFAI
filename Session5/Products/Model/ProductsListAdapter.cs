@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using Android.Widget;
 using Products.Model.Products;
 using Android.Views;
 using System.Collections.ObjectModel;
-using System.Timers;
-using Android.App;
+using Android.OS;
+using Java.Lang;
 
 namespace Products.Model
 {
@@ -13,34 +12,26 @@ namespace Products.Model
 	{
 		private readonly ObservableCollection<ProductEntity> ProductsList;
 		private readonly LayoutInflater Inflater;
-		private readonly Activity HostActivity;
 
-		public ProductsListAdapter (Activity context, ObservableCollection<ProductEntity> products, LayoutInflater inflater)
+		public ProductsListAdapter (ObservableCollection<ProductEntity> products, LayoutInflater inflater)
 		{
 			ProductsList = products;
 			ProductsList.CollectionChanged += DataSourceChanged;
+
 			Inflater = inflater;
-			HostActivity = context;
-
-			// Timer for adding new dummy product
-			// Just for testing purpose
-			Timer timer = new Timer (2 * 1000);
-			timer.Elapsed += (object sender, ElapsedEventArgs e) => {
-				ProductsList.Add(new ProductEntity {
-					Name = $"Product Timer {e.SignalTime}",
-					Price = 100
-				});
-			};
-
-			timer.AutoReset = true;
-			timer.Start ();
 		}
 
 		private void DataSourceChanged (object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
-			HostActivity.RunOnUiThread (() => {
-				NotifyDataSetChanged();
-			});
+			// UI thread check
+			bool isUIThread = Looper.MainLooper.Thread == Thread.CurrentThread();
+
+			if (!isUIThread) {
+				Console.WriteLine ("Data source has been updated from different thread. UI is not changed!");
+				return;
+			}
+
+			NotifyDataSetChanged();
 		}
 
 		#region implemented abstract members of BaseAdapter
